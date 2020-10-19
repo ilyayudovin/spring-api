@@ -4,13 +4,17 @@ import projectsInfo from '../projectsInfo.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.send(projectsInfo);
+  res.json({
+    projectsInfo: projectsInfo
+  });
 });
 
 router.get('/:text', (req, res) => {
   const inputText = req.params.text;
-  const cards = projectsInfo.filter((card) => card.name.toLowerCase().includes(inputText.toLowerCase()));
-  res.send(cards);
+  const searchedInfo = projectsInfo.filter((card) => card.name.toLowerCase().includes(inputText.toLowerCase()));
+  res.json({
+    projectsInfo: searchedInfo
+  });
 });
 
 export default router;

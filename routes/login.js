@@ -12,8 +12,9 @@ const generateToken = (user) => {
 router.post('/', (req, res) => {
   const user = req.body;
   const token = generateToken(user);
-  res.send(token);
-
+  res.json({
+    token: token
+  });
 });
 
 export default router;
