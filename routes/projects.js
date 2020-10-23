@@ -1,21 +1,25 @@
 import express from 'express';
-import projectsInfo from '../projectsInfo.js';
-import asyncHandler from './../middlewares/asyncMiddleware.js';
+import {pool} from "../dbConfig.js";
 
 const router = express.Router();
 
-router.get('/', asyncHandler((req, res) => {
-  res.json({
-    projectsInfo: projectsInfo
-  });
-}));
+router.get('/', (req, res) => {
+  pool.query('SELECT * FROM public."Projects"', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.status(200).json(results.rows);
+  })
+});
 
-router.get('/:text', asyncHandler((req, res) => {
-  const inputText = req.params.text;
-  const searchedInfo = projectsInfo.filter((card) => card.name.toLowerCase().includes(inputText.toLowerCase()));
-  res.json({
-    projectsInfo: searchedInfo
-  });
-}));
+router.get('/search', (req, res) => {
+  const input = req.query.q.toLowerCase();
+  pool.query(`SELECT name, text, url FROM public."Projects" WHERE LOWER(name) ~ '${input}'`, (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.status(200).json(results.rows);
+  })
+});
 
 export default router;
