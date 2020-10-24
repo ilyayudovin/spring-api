@@ -1,0 +1,31 @@
+import pkg from 'sequelize';
+const { DataTypes } = pkg;
+import { db } from './../config/sequalize.js';
+
+export const User = db.define('User',{
+  id: {
+    type: DataTypes.STRING,
+    primaryKey: true
+  },
+  username: {
+    type: DataTypes.STRING
+  },
+  password: {
+    type: DataTypes.STRING
+  },
+  email: {
+    type: DataTypes.STRING
+  },
+  firstname: {
+    type: DataTypes.STRING
+  },
+  lastname: {
+    type: DataTypes.STRING
+  },
+  age: {
+    type: DataTypes.NUMBER
+  },
+},{
+  tableName: 'Users',
+  timestamps: false
+});
