@@ -1,6 +1,6 @@
 import pkg from 'sequelize';
 const { DataTypes } = pkg;
-import { db } from './../config/sequalize.js';
+import { db } from './../config/sequalizeConfig.js';
 
 export const Project = db.define('Project',{
   id: {

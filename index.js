@@ -4,7 +4,7 @@ import cors from 'cors';
 import registerRoutes from './routes/signup.js';
 import loginRoutes from './routes/login.js';
 import projectsRoutes from './routes/projects.js';
-import { db } from './config/sequalize.js';
+import { db } from './config/sequalizeConfig.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
