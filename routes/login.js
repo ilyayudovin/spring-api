@@ -15,23 +15,19 @@ router.post('/', async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ where: { username: username }});
-    bcrypt.compare(password, user.password, (err, isMatch) => {
-      if (err) {
-        throw err;
-      }
-      if (isMatch) {
-        const token = generateToken(user);
-        res.json({
-          token: token
-        });
-      }
-      else {
-        res.json({
-          type: 'password',
-          error: 'Incorrect password'
-        })
-      }
-    })
+    const isMatch = bcrypt.compareSync(password, user.password);
+    if (isMatch) {
+      const token = generateToken(user);
+      res.json({
+        token: token
+      });
+    }
+    else {
+      res.json({
+        type: 'password',
+        error: 'Incorrect password'
+      })
+    }
   }
   catch (err) {
     res.json({
