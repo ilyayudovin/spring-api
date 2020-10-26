@@ -16,7 +16,7 @@ router.get('/search', (req, res) => {
   Project.findAll({
       where:
         { name:
-            { [Op.iLike]: '%' + term + '%' }
+            { [Op.iLike]: `%${term}%` }
         }
     })
     .then(projects => res.status(200).json(projects))
