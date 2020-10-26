@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   Project.findAll()
     .then(projects => res.status(200).json(projects))
-    .catch(err => console.log(err))
+    .catch(err => res.status(400).json(err))
 });
 
 router.get('/search', (req, res) => {
@@ -20,7 +20,7 @@ router.get('/search', (req, res) => {
         }
     })
     .then(projects => res.status(200).json(projects))
-    .catch(err => console.log(err))
+    .catch(err => res.status(400).json(err))
 });
 
 export default router;

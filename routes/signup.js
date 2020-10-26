@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
     age: age
   })
     .then(user => res.status(200).json(token))
-    .catch(err => console.log(err))
+    .catch(err => res.status(400).json(err))
 });
 
 export default router;
