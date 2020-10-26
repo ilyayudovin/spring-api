@@ -26,6 +26,6 @@ export const User = db.define('User',{
     type: DataTypes.NUMBER
   },
 },{
-  tableName: 'Users',
+  tableName: 'users',
   timestamps: false
 });
