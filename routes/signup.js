@@ -1,8 +1,14 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import { generateToken } from "../jwt/token.js";
 import { User } from './../models/userModel.js';
+import jwt from "jsonwebtoken";
 const router = express.Router();
+
+export const generateToken = (user) => {
+  const signature = 'my-super-secret';
+  const expiration = '6h';
+  return jwt.sign({ user }, signature, { expiresIn: expiration });
+};
 
 router.post('/', async (req, res) => {
   const newUser = req.body;
