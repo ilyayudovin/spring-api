@@ -5,10 +5,10 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-const generateToken = (user) => {
+const generateToken = (Object) => {
   const signature = 'my-super-secret';
   const expiration = '6h';
-  return jwt.sign({ user }, signature, { expiresIn: expiration });
+  return jwt.sign({ Object }, signature, { expiresIn: expiration });
 };
 
 router.post('/', async (req, res) => {
