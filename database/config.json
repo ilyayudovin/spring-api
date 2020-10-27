@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "ilyayudovin",
+    "password": "ilyayudovin123",
+    "database": "spring",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "fedqvdftcjnhkb",
+    "password": "c08e2f65a013792cf7134f048a828567f302a06235ab620d4369979d0d036923",
+    "database": "daldfu6mpf5q3h",
+    "host": "ec2-3-228-114-251.compute-1.amazonaws.com",
+    "dialect": "postgres"
+  }
+}

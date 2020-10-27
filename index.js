@@ -4,7 +4,7 @@ const cors = require('cors');
 const registerRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
 const projectsRoutes = require('./routes/projects');
-const db = require('./config/sequalizeConfig');
+const db = require('./sequelizeConfig/sequalizeConfig');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
