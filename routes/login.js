@@ -23,14 +23,14 @@ router.post('/', async (req, res) => {
       });
     }
     else {
-      res.json({
+      res.status(401).json({
         type: 'password',
         error: 'Incorrect password'
       })
     }
   }
   catch (err) {
-    res.json({
+    res.status(404).json({
       type: 'username',
       error: 'No such username'
     });
