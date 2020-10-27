@@ -16,7 +16,7 @@ const Project = db.define('Project', {
     type: DataTypes.STRING
   },
 },{
-  tableName: 'projects',
+  tableName: 'project',
   timestamps: false
 });
 

@@ -25,7 +25,7 @@ const User = db.define('User',{
     type: DataTypes.NUMBER
   },
 },{
-  tableName: 'users',
+  tableName: 'user',
   timestamps: false
 });
 
