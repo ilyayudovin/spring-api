@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ where: { username: username }});
-    const isMatch = bcrypt.compareSync(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
       const token = generateToken(user);
       res.json({

@@ -11,11 +11,11 @@ const generateToken = (user) => {
   return jwt.sign({ user }, signature, { expiresIn: expiration });
 };
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const newUser = req.body;
   const token = generateToken(newUser);
   const { username, firstName, lastName, password, email, age } = newUser;
-  const hashedPassword = bcrypt.hashSync(password, 10);
+  const hashedPassword = await bcrypt.hash(password, 10);
   User.create({
     username: username,
     firstname: firstName,
