@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const db = require('./../config/sequalizeConfig');
 
-const Project = db.define('Project',{
+const Project = db.define('Project', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true
