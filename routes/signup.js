@@ -1,10 +1,11 @@
-import express from 'express';
-import bcrypt from 'bcrypt';
-import { User } from './../models/userModel.js';
-import jwt from "jsonwebtoken";
+const express = require('express');
+const bcrypt = require('bcrypt');
+const User = require('./../models/userModel.js');
+const jwt = require('jsonwebtoken');
+
 const router = express.Router();
 
-export const generateToken = (user) => {
+const generateToken = (user) => {
   const signature = 'my-super-secret';
   const expiration = '6h';
   return jwt.sign({ user }, signature, { expiresIn: expiration });
@@ -27,4 +28,4 @@ router.post('/', (req, res) => {
     .catch(err => res.status(400).json(err))
 });
 
-export default router;
+module.exports = router;

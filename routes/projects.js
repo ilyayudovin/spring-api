@@ -1,7 +1,6 @@
-import express from 'express';
-import pkg from 'sequelize';
-const { Op } = pkg;
-import { Project } from "../models/projectModel.js";
+const express = require('express');
+const { Op } = require('sequelize');
+const Project = require('../models/projectModel.js');
 
 const router = express.Router();
 
@@ -18,4 +17,4 @@ router.get('/search', (req, res) => {
     .catch(err => res.status(400).json(err))
 });
 
-export default router;
+module.exports = router;

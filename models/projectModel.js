@@ -1,8 +1,7 @@
-import pkg from 'sequelize';
-const { DataTypes } = pkg;
-import { db } from './../config/sequalizeConfig.js';
+const { DataTypes } = require('sequelize');
+const db = require('./../config/sequalizeConfig');
 
-export const Project = db.define('Project',{
+const Project = db.define('Project',{
   id: {
     type: DataTypes.STRING,
     primaryKey: true
@@ -20,3 +19,5 @@ export const Project = db.define('Project',{
   tableName: 'projects',
   timestamps: false
 });
+
+module.exports = Project;

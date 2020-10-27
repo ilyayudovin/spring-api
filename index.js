@@ -1,10 +1,10 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import registerRoutes from './routes/signup.js';
-import loginRoutes from './routes/login.js';
-import projectsRoutes from './routes/projects.js';
-import { db } from './config/sequalizeConfig.js';
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const registerRoutes = require('./routes/signup');
+const loginRoutes = require('./routes/login');
+const projectsRoutes = require('./routes/projects');
+const db = require('./config/sequalizeConfig');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
