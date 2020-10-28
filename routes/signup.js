@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user.js');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
-
+const asyncHandler = require('../middlewares/asyncMiddleware');
 const router = express.Router();
 
 const generateToken = (id) => {
@@ -12,9 +12,8 @@ const generateToken = (id) => {
   return jwt.sign({ id }, signature, { expiresIn: expiration });
 };
 
-router.post('/', async (req, res) => {
+router.post('/', asyncHandler (async (req, res, next) => {
   const newUser = req.body;
-  // const token = generateToken(newUser);
   const { username, firstName, lastName, password, email, age } = newUser;
   const hashedPassword = await bcrypt.hash(password, 10);
   User.create({
@@ -28,6 +27,6 @@ router.post('/', async (req, res) => {
   })
     .then(user => res.status(200).json(generateToken(user.id))
     .catch(err => res.status(400).json(err)))
-});
+}));
 
 module.exports = router;

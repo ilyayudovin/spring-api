@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const User = require('../models/user.js');
 const jwt = require('jsonwebtoken');
+const asyncHandler = require('../middlewares/asyncMiddleware');
 
 const router = express.Router();
 
@@ -11,7 +12,7 @@ const generateToken = (user) => {
   return jwt.sign({ user }, signature, { expiresIn: expiration });
 };
 
-router.post('/', async (req, res) => {
+router.post('/', asyncHandler(async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ where: { username: username }});
@@ -35,6 +36,6 @@ router.post('/', async (req, res) => {
       error: 'No such username'
     });
   }
-});
+}));
 
 module.exports = router;

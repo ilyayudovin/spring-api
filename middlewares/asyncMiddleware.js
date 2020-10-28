@@ -4,4 +4,4 @@ const asyncHandler = fn => (req, res, next) => {
     .catch(next);
 };
 
-export default asyncHandler;
+module.exports = asyncHandler;
