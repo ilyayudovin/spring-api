@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const http = require('http');
 const registerRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
 const projectsRoutes = require('./routes/projects');
@@ -18,4 +19,6 @@ app.use('/signup', registerRoutes);
 app.use('/login', loginRoutes);
 app.use('/projects', projectsRoutes);
 
-app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
+const server = http.createServer(app);
+
+server.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
