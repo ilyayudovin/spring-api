@@ -18,6 +18,10 @@ app.use(bodyParser.json());
 app.use('/signup', registerRoutes);
 app.use('/login', loginRoutes);
 app.use('/projects', projectsRoutes);
+app.use(function(err, req, res, next) {
+  console.error(err);
+  res.status(500).json('Something failed!');
+});
 
 const server = http.createServer(app);
 
