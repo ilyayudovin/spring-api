@@ -3,8 +3,9 @@ const db = require('../sequelizeConfig/sequalizeConfig');
 
 const User = db.define('User',{
   id: {
-    type: DataTypes.STRING,
-    primaryKey: true
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
   username: {
     type: DataTypes.STRING

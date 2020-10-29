@@ -1,21 +1,20 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const User = require('../models/user.js');
-const jwt = require('jsonwebtoken');
+const generateToken = require('../tokens/generateToken');
 const asyncHandler = require('../middlewares/asyncMiddleware');
 
 const router = express.Router();
 
-const generateToken = (user) => {
-  const signature = 'my-super-secret';
-  const expiration = '6h';
-  return jwt.sign({ user }, signature, { expiresIn: expiration });
-};
-
 router.post('/', asyncHandler(async (req, res) => {
   const { username, password } = req.body;
-  try {
     const user = await User.findOne({ where: { username: username }});
+    if( user === null) {
+      res.status(404).json({
+        type: 'username',
+        error: 'No such username'
+      });
+    }
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
       const token = generateToken(user);
@@ -24,18 +23,11 @@ router.post('/', asyncHandler(async (req, res) => {
       });
     }
     else {
-      res.status(401).json({
+      res.status(400).json({
         type: 'password',
         error: 'Incorrect password'
       })
     }
-  }
-  catch (err) {
-    res.status(404).json({
-      type: 'username',
-      error: 'No such username'
-    });
-  }
 }));
 
 module.exports = router;

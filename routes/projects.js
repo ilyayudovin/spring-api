@@ -5,17 +5,15 @@ const asyncHandler = require('../middlewares/asyncMiddleware');
 
 const router = express.Router();
 
-router.get('/', asyncHandler((req, res) => {
-  Project.findAll()
-    .then(projects => res.status(200).json(projects))
-    .catch(err => res.status(400).json(err))
+router.get('/', asyncHandler(async (req, res) => {
+  const projects = await Project.findAll({ raw: true });
+  res.status(200).json(projects);
 }));
 
-router.get('/search', asyncHandler((req, res) => {
+router.get('/search', asyncHandler(async (req, res) => {
   const term = req.query.q.toLowerCase();
-  Project.findAll({ where: { name: { [Op.iLike]: `%${term}%` }}})
-    .then(projects => res.status(200).json(projects))
-    .catch(err => res.status(400).json(err))
+  const projects = await Project.findAll({where: { name: { [Op.iLike]: `%${term}%` }}});
+  res.status(200).json(projects);
 }));
 
 module.exports = router;

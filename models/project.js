@@ -3,8 +3,9 @@ const db = require('../sequelizeConfig/sequalizeConfig');
 
 const Project = db.define('Project', {
   id: {
-    type: DataTypes.STRING,
-    primaryKey: true
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
   name: {
     type: DataTypes.STRING,
