@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/', asyncHandler(async (req, res) => {
   const { username, password } = req.body;
     const user = await User.findOne({ where: { username: username }});
-    if(user === null) {
+    if (user === null) {
       res.status(404).json({
         type: 'username',
         error: 'No such username'

@@ -13,7 +13,7 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/search', asyncHandler(async (req, res) => {
   const term = req.query.q.toLowerCase();
   const projects = await Project.findAll({where: { name: { [Op.iLike]: `%${term}%` }}});
-  res.status(200).json(projects);
+  res.json(projects);
 }));
 
 module.exports = router;

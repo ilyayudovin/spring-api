@@ -20,7 +20,9 @@ app.use('/login', loginRoutes);
 app.use('/projects', projectsRoutes);
 app.use(function(err, req, res, next) {
   console.error(err);
-  res.status(500).json('Something failed!');
+  res.status(500).json({
+    messages: 'Something failed!'
+  });
 });
 
 const server = http.createServer(app);

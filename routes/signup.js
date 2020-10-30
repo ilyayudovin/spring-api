@@ -17,7 +17,9 @@ router.post('/', asyncHandler (async (req, res, next) => {
     email: email,
     age: age
   });
-  res.status(200).json(generateToken(user.id));
+  res.json({
+    token: generateToken(user.id)
+  });
 }));
 
 module.exports = router;
